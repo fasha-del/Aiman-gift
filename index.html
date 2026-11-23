@@ -1,0 +1,581 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aiman's Little World ♡</title>
+
+<style>
+* { box-sizing:border-box; }
+
+body {
+ margin:0;
+ font-family:Georgia,serif;
+ color:#795b62;
+ background:linear-gradient(145deg,#fff5f1,#f5e1e4,#fff7ef);
+ min-height:100vh;
+ overflow-x:hidden;
+}
+
+button { font-family:inherit; cursor:pointer; }
+
+.top {
+ text-align:center;
+ padding:25px 15px 8px;
+}
+
+.top small {
+ letter-spacing:4px;
+ color:#b78d96;
+ font-size:10px;
+}
+
+.top h2 {
+ font-weight:normal;
+ margin:10px 0;
+}
+
+.music {
+ position:fixed;
+ top:15px;
+ right:12px;
+ z-index:20;
+ border:1px solid #e7c5ca;
+ background:#fffaf8;
+ color:#966d77;
+ border-radius:25px;
+ padding:10px 13px;
+ font-size:12px;
+}
+
+.container {
+ max-width:480px;
+ margin:auto;
+ padding:15px 18px 50px;
+}
+
+.panel {
+ background:#fffaf8eF;
+ border:1px solid #efdadd;
+ border-radius:25px;
+ padding:27px 20px;
+ text-align:center;
+ box-shadow:0 8px 25px #bd92921c;
+ margin-bottom:17px;
+}
+
+.hidden { display:none!important; }
+
+h1 {
+ font-size:29px;
+ font-weight:normal;
+ line-height:1.4;
+}
+
+h3 {
+ font-size:21px;
+ font-weight:normal;
+}
+
+p {
+ line-height:1.85;
+ font-size:14px;
+}
+
+button.main {
+ background:#c9909d;
+ color:white;
+ border:0;
+ padding:13px 24px;
+ border-radius:30px;
+ margin:10px 4px;
+ font-size:13px;
+}
+
+button.main:active { transform:scale(.96); }
+
+.envelope {
+ font-size:90px;
+ cursor:pointer;
+ display:inline-block;
+ animation:float 2s infinite;
+}
+
+@keyframes float {
+ 50% {transform:translateY(-10px);}
+}
+
+nav {
+ display:flex;
+ flex-wrap:wrap;
+ justify-content:center;
+ gap:7px;
+ margin:15px 0;
+}
+
+nav button {
+ background:#fffaf8;
+ color:#9b747d;
+ border:1px solid #efdadd;
+ padding:10px 13px;
+ border-radius:20px;
+ font-size:12px;
+}
+
+nav button:active {
+ background:#efd4d9;
+}
+
+.section { display:none; }
+.section.active { display:block; animation:fade .6s; }
+
+@keyframes fade {
+ from {opacity:0;transform:translateY(8px);}
+ to {opacity:1;transform:translateY(0);}
+}
+
+.heart-area {
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:12px;
+ margin:20px 0;
+}
+
+.heart-button {
+ border:1px solid #efdadd;
+ border-radius:18px;
+ background:#fff4f4;
+ padding:17px 5px;
+ font-size:30px;
+ color:#c58d9a;
+}
+
+.heart-button:active { transform:scale(.9); }
+
+.message {
+ min-height:65px;
+ background:#fff2f1;
+ border-radius:15px;
+ padding:15px;
+ font-size:14px;
+ line-height:1.8;
+ margin-top:15px;
+}
+
+.gift {
+ font-size:100px;
+ display:inline-block;
+ cursor:pointer;
+ transition:.5s;
+}
+
+.gift.open {
+ transform:rotate(12deg) scale(1.15);
+}
+
+.note {
+ background:#fff3e9;
+ border:1px solid #efdccf;
+ border-radius:15px;
+ padding:17px;
+ margin:12px 0;
+ text-align:left;
+ cursor:pointer;
+}
+
+.note p { margin:8px 0 0; }
+
+.scrapbook {
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+}
+
+.scrap {
+ background:#fff3ed;
+ border-radius:16px;
+ padding:20px 10px;
+ border:1px solid #efdadd;
+ cursor:pointer;
+}
+
+.scrap span { font-size:30px; }
+
+.scrap p { font-size:12px; }
+
+.footer {
+ text-align:center;
+ padding:20px;
+ font-size:12px;
+ color:#b58b8b;
+}
+
+.float-heart {
+ position:fixed;
+ bottom:-30px;
+ pointer-events:none;
+ animation:rise 8s linear forwards;
+ z-index:0;
+ color:#d99ba9;
+}
+
+@keyframes rise {
+ to { transform:translateY(-110vh) rotate(360deg); opacity:0; }
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+ <source src="heaven.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music" onclick="toggleMusic()" id="musicBtn">
+ ♫ Play Heaven
+</button>
+
+<div class="top">
+ <small>A LITTLE WORLD MADE WITH LOVE</small>
+ <h2>For my baby, Aiman ♡</h2>
+</div>
+
+<div class="container">
+
+<!-- OPENING -->
+
+<div class="panel" id="opening">
+
+ <div style="font-size:12px;letter-spacing:3px;">
+ A SPECIAL DELIVERY
+ </div>
+
+ <h1>Hi, baby.</h1>
+
+ <p>Sayang ada something untuk babyy.</p>
+
+ <div class="envelope" onclick="enterWorld()">💌</div>
+
+ <p style="color:#b58b8b;font-size:12px;">
+ Tap the envelope to open ♡
+ </p>
+
+ <button class="main" onclick="enterWorld()">
+ Open my little world
+ </button>
+
+</div>
+
+
+<!-- MAIN WORLD -->
+
+<div id="world" class="hidden">
+
+ <div class="panel">
+  <div style="font-size:25px;">♡ ✿ ♡</div>
+  <h1>Welcome, baby.</h1>
+  <p>
+   Hehe, akhirnya baby sampai sini.<br>
+   Explore everything okayy.
+  </p>
+ </div>
+
+ <nav>
+  <button onclick="go('home')">♡ Home</button>
+  <button onclick="go('letter')">💌 Letter</button>
+  <button onclick="go('love')">♡ Hearts</button>
+  <button onclick="go('scrap')">✿ Notes</button>
+  <button onclick="go('gift')">🎁 Gift</button>
+ </nav>
+
+
+<!-- HOME -->
+
+<div class="section active" id="home">
+
+ <div class="panel">
+  <h3>A little place for you ♡</h3>
+  <p>
+   Sayang buat ni khas untuk baby.
+   Tak besar mana pun, but there's
+   a little piece of sayang in it.
+  </p>
+  <div style="font-size:38px;">🌷 🧸 🌷</div>
+ </div>
+
+ <div class="panel">
+  <h3>Things to explore</h3>
+  <p>Try tekan setiap bahagian dekat atas.</p>
+  <p>Some little surprises are waiting for you.</p>
+ </div>
+
+</div>
+
+
+<!-- LETTER -->
+
+<div class="section" id="letter">
+
+ <div class="panel">
+  <div style="font-size:35px;">💌</div>
+  <h1>Dear baby,</h1>
+
+  <p>
+   Senanye sayang tak tahu nak mula
+   dari mana.
+  </p>
+
+  <p>
+   So, sayang buat website ni sebab
+   sayang nak bagi something yang
+   baby boleh simpan.
+  </p>
+
+  <p>
+   Walaupun simple, sayang buat sendiri tauu.
+  </p>
+
+  <p>
+   Sorry sebab sayang tak sayang baby.
+  </p>
+
+  <p>
+   Kadang-kadang sayang tak pandai
+   nak bagitau apa yang sayang patut cakap.
+  </p>
+
+  <p>
+   But please know that your little
+   efforts matter to me.
+  </p>
+
+  <div style="font-size:28px;">♡</div>
+ </div>
+
+</div>
+
+
+<!-- HEARTS -->
+
+<div class="section" id="love">
+
+ <div class="panel">
+  <h1>Pick a heart, baby ♡</h1>
+  <p>
+   Every heart has a little message
+   from sayang.
+  </p>
+
+  <div class="heart-area">
+   <button class="heart-button" onclick="reveal(0)">♡</button>
+   <button class="heart-button" onclick="reveal(1)">♡</button>
+   <button class="heart-button" onclick="reveal(2)">♡</button>
+   <button class="heart-button" onclick="reveal(3)">♡</button>
+   <button class="heart-button" onclick="reveal(4)">♡</button>
+   <button class="heart-button" onclick="reveal(5)">♡</button>
+  </div>
+
+  <div class="message" id="heartMessage">
+   Tap one of the hearts to discover a message ♡
+  </div>
+ </div>
+
+</div>
+
+
+<!-- SCRAPBOOK -->
+
+<div class="section" id="scrap">
+
+ <div class="panel">
+  <h1>Little things ♡</h1>
+
+  <p>
+   Some things are worth appreciating.
+   Tap each note.
+  </p>
+
+  <div class="scrapbook">
+
+   <div class="scrap" onclick="note(0)">
+    <span>🌷</span>
+    <p>Your little efforts</p>
+   </div>
+
+   <div class="scrap" onclick="note(1)">
+    <span>🧸</span>
+    <p>Your company</p>
+   </div>
+
+   <div class="scrap" onclick="note(2)">
+    <span>💌</span>
+    <p>Our conversations</p>
+   </div>
+
+   <div class="scrap" onclick="note(3)">
+    <span>⭐</span>
+    <p>Your dreams</p>
+   </div>
+
+  </div>
+
+  <div class="message" id="noteMessage">
+   Tap a little note ♡
+  </div>
+
+ </div>
+
+</div>
+
+
+<!-- GIFT -->
+
+<div class="section" id="gift">
+
+ <div class="panel">
+
+  <h1>A little surprise!</h1>
+
+  <p>
+   Baby, there's one more thing
+   sayang nak bagi.
+  </p>
+
+  <div class="gift" id="giftBox" onclick="openGift()">
+   🎁
+  </div>
+
+  <p>Tap the gift box ♡</p>
+
+  <div class="message hidden" id="giftMessage">
+   <h3>Hyy, baby! ♡</h3>
+
+   Sayang harap baby suka hadiahni.
+   Girlfriend orang lain mana pandai
+   buat web khas macamni.
+
+   <p>
+    This's my way of showing affection.
+    Jadi baby kena jaga relay nii okayy.
+   </p>
+
+   <p>
+    May your dreams find their way to you.
+   </p>
+
+   <p>
+    Always do your best, Aiman. 🤍
+   </p>
+
+   <h3>With love, Fasha ♡</h3>
+  </div>
+
+ </div>
+
+</div>
+
+<div class="footer">
+ Made with love, just for you ♡
+</div>
+
+</div>
+</div>
+
+
+<script>
+
+const messages = [
+ "Sayang appreciate all the little things baby buat. ♡",
+ "Thank you sebab selalu luangkan masa.",
+ "Your presence makes ordinary days special.",
+ "Sayang harap baby terus kejar semua impian baby.",
+ "Tak semua benda perlu sempurna. We can keep learning.",
+ "This little website is made specially for you. 🤍"
+];
+
+const notes = [
+ "Your effort never goes unnoticed. ♡",
+ "Sometimes having you around is already enough.",
+ "Even ordinary conversations can become lovely memories.",
+ "May your dreams find their way to you. Always do your best, Aiman."
+];
+
+function enterWorld() {
+ document.getElementById("opening").classList.add("hidden");
+ document.getElementById("world").classList.remove("hidden");
+
+ const music = document.getElementById("music");
+
+ music.play().then(function(){
+  document.getElementById("musicBtn").innerHTML="♫ Pause Heaven";
+ }).catch(function(){});
+}
+
+function go(id) {
+ document.querySelectorAll(".section").forEach(function(s){
+  s.classList.remove("active");
+ });
+
+ document.getElementById(id).classList.add("active");
+
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function toggleMusic() {
+ const music=document.getElementById("music");
+ const btn=document.getElementById("musicBtn");
+
+ if(music.paused){
+  music.play().then(function(){
+   btn.innerHTML="♫ Pause Heaven";
+  }).catch(function(){
+   btn.innerHTML="♫ Try again";
+  });
+ } else {
+  music.pause();
+  btn.innerHTML="♫ Play Heaven";
+ }
+}
+
+function reveal(i) {
+ document.getElementById("heartMessage").innerHTML=messages[i];
+}
+
+function note(i) {
+ document.getElementById("noteMessage").innerHTML=notes[i];
+}
+
+function openGift() {
+ const gift=document.getElementById("giftBox");
+ const message=document.getElementById("giftMessage");
+
+ gift.classList.add("open");
+ gift.innerHTML="💝";
+ message.classList.remove("hidden");
+}
+
+function createHeart() {
+ const heart=document.createElement("div");
+
+ heart.className="float-heart";
+ heart.innerHTML=["♡","♥","✧"][Math.floor(Math.random()*3)];
+
+ heart.style.left=Math.random()*100+"vw";
+ heart.style.fontSize=(15+Math.random()*18)+"px";
+ heart.style.animationDuration=(5+Math.random()*5)+"s";
+
+ document.body.appendChild(heart);
+
+ setTimeout(function(){
+  heart.remove();
+ },10000);
+}
+
+setInterval(createHeart,1000);
+
+</script>
+
+</body>
+</html>
